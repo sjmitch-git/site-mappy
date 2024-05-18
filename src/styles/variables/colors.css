@@ -1,0 +1,76 @@
+/* COLORS */
+:root {
+	--red: #f44336;
+	--light-red: #ff7961;
+	--deep-red: #df190b;
+
+	--pink: #e91e63;
+	--light-pink: #ff6090;
+	--deep-pink: #b0003a;
+
+	--purple: #9c27b0;
+	--light-purple: #c158dc;
+	--deep-purple: #673ab7;
+
+	--indigo: #3f51b5;
+	--light-indigo: #757de8;
+	--deep-indigo: #002984;
+
+	--blue: #2196f3;
+	--light-blue: #6ec6ff;
+	--deep-blue: #0069c0;
+
+	--cyan: #00bcd4;
+	--light-cyan: #62efff;
+	--deep-cyan: #008ba3;
+
+	--teal: #009688;
+	--light-teal: #52c7b8;
+	--deep-teal: #003d33;
+
+	--green: #4caf50;
+	--light-green: #80e27e;
+	--deep-green: #087f23;
+
+	--lime: #cddc39;
+	--light-lime: #f4ff81;
+	--deep-lime: #99aa00;
+
+	--yellow: #ffeb3b;
+	--light-yellow: #ffff72;
+	--deep-yellow: #b2a300;
+
+	--amber: #ffc107;
+	--light-amber: #ffd74a;
+	--deep-amber: #c79100;
+
+	--orange: #ff9800;
+	--light-orange: #ffc947;
+	--deep-orange: #ff5722;
+
+	--brown: #795548;
+	--light-brown: #a98274;
+	--deep-brown: #4b2c20;
+
+	--blue-grey: #607d8b;
+	--light-blue-grey: #8eacbb;
+	--deep-blue-grey: #34515e;
+}
+
+/* GREYSCALE */
+:root {
+	--white: #fafafa;
+	--lightest-grey: #f5f5f5;
+	--lighter-grey: #d5d5d5;
+	--mid-grey: #94a3b8;
+	--darker-grey: #64748b;
+	--darkest-grey: #0f172a;
+	--black: #111111;
+}
+
+/* OPAQUE */
+:root {
+	--opaque: rgba(0, 0, 0, 0.5);
+	--opaque-light: rgba(0, 0, 0, 0.2);
+	--opaque-dark: rgba(0, 0, 0, 0.8);
+}

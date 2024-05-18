@@ -1,0 +1,29 @@
+:root {
+	--primary-color: var(--indigo);
+	--secondary-color: var(--amber);
+
+	--dark-color: var(--black);
+	--light-color: var(--white);
+
+	--info-color: var(--blue);
+	--info-color-light: var(--light-blue);
+	--info-color-dark: var(--deep-blue);
+
+	--success-color: var(--green);
+	--success-color-light: var(--light-green);
+	--success-color-dark: var(--deep-green);
+
+	--warning-color: var(--orange);
+	--warning-color-light: var(--light-orange);
+	--warning-color-dark: var(--deep-orange);
+
+	--danger-color: var(--red);
+	--danger-color-light: var(--light-red);
+	--danger-color-dark: var(--deep-red);
+
+	--backdrop-color: var(--opaque-dark);
+	--shim-color: var(--opaque);
+	--shim-light-color: var(--opaque-light);
+	--disabled-color: var(--darker-grey);
+	--accent-color: var(--yellow);
+}

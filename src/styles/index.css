@@ -1,0 +1,10 @@
+@import './variables/index.css';
+
+@import 'tailwindcss/base';
+/* @import './base/index.css'; */
+
+@import 'tailwindcss/components';
+/* @import './components/index.css'; */
+
+@import 'tailwindcss/utilities';
+/* @import './utilities/index.css'; */
