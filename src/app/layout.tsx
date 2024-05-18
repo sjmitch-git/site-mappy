@@ -13,6 +13,10 @@ import {
 	GOOGLE_VERIFICATION,
 } from '@/lib/constants'
 
+import Header from './header'
+import Footer from './footer'
+import Container from './container'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -58,7 +62,9 @@ export default function RootLayout({
 		<html lang='en'>
 			<body className={inter.className}>
 				<GoogleAnalytics gaId={GA_TAG} />
-				{children}
+				<Header />
+				<Container className='flex-grow'>{children}</Container>
+				<Footer />
 			</body>
 		</html>
 	)
