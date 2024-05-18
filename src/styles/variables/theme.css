@@ -26,4 +26,7 @@
 	--shim-light-color: var(--opaque-light);
 	--disabled-color: var(--darker-grey);
 	--accent-color: var(--yellow);
+
+	--body-light: var(--light-amber);
+	--body-dark: var(--deep-amber);
 }
