@@ -1,0 +1,5 @@
+const APP_TITLE: string = 'Site Mappy'
+const APP_DESCRIPTION: string = 'Generate Sitemap.xml from a given URL'
+const APP_BASE_URL: string = 'https://site-mappy.vercel.app'
+const APP_AUTHOR: string = 'Stephen Mitchell'
+const APP_AUTHOR_URL: string = 'https://mitchblog.vercel.app/'
