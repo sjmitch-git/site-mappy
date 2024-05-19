@@ -1,3 +1,19 @@
 body {
 	@apply flex h-screen flex-col bg-gradient-to-b from-[--body-dark] to-[--body-light] bg-cover bg-fixed text-light;
 }
+
+::-webkit-scrollbar {
+	width: 0px;
+	height: 10px;
+	background-color: #ededed;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #e2dede;
+}
+
+@media screen and (min-width: 48em) {
+	::-webkit-scrollbar {
+		width: 10px;
+	}
+}

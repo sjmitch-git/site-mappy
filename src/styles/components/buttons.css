@@ -1,0 +1,64 @@
+.btn {
+	@apply inline-flex items-center justify-center gap-2 p-2 font-mono text-base uppercase hover:opacity-85;
+
+	/* sizes */
+	&.sm {
+		@apply p-1 text-sm;
+	}
+
+	&.lg {
+		@apply p-3 text-lg;
+	}
+
+	&.xl {
+		@apply p-4 text-xl;
+	}
+
+	&.xxl {
+		@apply p-5 text-4xl;
+	}
+
+	/* layouts */
+	&.circle {
+		@apply aspect-square rounded-full;
+	}
+
+	&.rounded {
+		/* radius sizes */
+		&.sm {
+			@apply rounded-sm;
+		}
+
+		&.lg {
+			@apply rounded-lg;
+		}
+
+		&.xl {
+			@apply rounded-xl;
+		}
+
+		&.xxl {
+			@apply rounded-2xl;
+		}
+	}
+
+	&.pill {
+		@apply rounded-full px-4;
+
+		&.sm {
+			@apply px-3;
+		}
+
+		&.lg {
+			@apply px-5;
+		}
+
+		&.xl {
+			@apply px-6;
+		}
+
+		&.xxl {
+			@apply px-7;
+		}
+	}
+}
