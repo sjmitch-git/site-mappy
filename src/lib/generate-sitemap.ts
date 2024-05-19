@@ -1,8 +1,6 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
-// type SetFeedback = (message: string) => void
-
 async function fetchHTML(url: string): Promise<string | null> {
 	try {
 		const response = await axios.get(url)
@@ -32,36 +30,55 @@ function extractLinks(html: string, baseURL: string): string[] {
 	return links
 }
 
-async function crawl(url: string, baseURL: string, visitedLinks = new Set()) {
+async function crawl(
+	url: string,
+	baseURL: string,
+	visitedLinks = new Set<string>(),
+	setFeedback?: (message: string) => void
+) {
 	url = url.endsWith('/') ? url.slice(0, -1) : url
 
 	if (visitedLinks.has(url)) {
 		return
 	}
-	console.log(`Crawling ${url}`)
+
+	if (setFeedback) {
+		setFeedback(`Crawling ${url}`)
+	}
+
 	visitedLinks.add(url)
+
 	const html = await fetchHTML(url)
 	if (!html) {
 		return
 	}
 	const links = extractLinks(html, baseURL)
 	for (const link of links) {
-		await crawl(link, baseURL, visitedLinks)
+		await crawl(link, baseURL, visitedLinks, setFeedback)
 	}
 }
 
-async function generateSitemap(baseURL: string): Promise<string> {
+async function generateSitemap(
+	baseURL: string,
+	setFeedback?: (message: string) => void
+): Promise<string> {
 	const visitedLinks = new Set<string>()
 
 	baseURL = baseURL.endsWith('/') ? baseURL.slice(0, -1) : baseURL
 
-	await crawl(baseURL, baseURL, visitedLinks)
+	await crawl(baseURL, baseURL, visitedLinks, setFeedback)
+
 	const sitemapContent =
 		'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
 		Array.from(visitedLinks)
 			.map((link) => `  <url><loc>${link}</loc></url>`)
 			.join('\n') +
 		'\n</urlset>'
+
+	if (setFeedback) {
+		setFeedback(`Crawling completed. Total links: ${visitedLinks.size}`)
+	}
+
 	return sitemapContent
 }
 

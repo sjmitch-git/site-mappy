@@ -11,28 +11,50 @@ export default function Crawl() {
 	const [feedback, setFeedback] = useState('')
 	const [loading, setLoading] = useState(false)
 	const [sitemap, setSitemap] = useState('')
-	const [isFormValid, setIsFormValid] = useState(false)
+	const [isInputValid, setIsInputValid] = useState(false)
+	const [eventSource, setEventSource] = useState<EventSource | null>(null)
 
 	useEffect(() => {
 		const urlPattern = /^https:\/\/.+/
-		setIsFormValid(urlPattern.test(baseUrl))
+		setIsInputValid(urlPattern.test(baseUrl))
 	}, [baseUrl])
 
-	const handleClick = async () => {
+	useEffect(() => {
+		if (eventSource) {
+			eventSource.onmessage = (event) => {
+				if (event.data === 'Done') {
+					eventSource.close()
+					setLoading(false)
+					return
+				}
+
+				try {
+					const data = JSON.parse(event.data)
+					const formattedXml = format(data.sitemap)
+					setSitemap(formattedXml)
+				} catch (error) {
+					setFeedback(event.data)
+				}
+			}
+
+			eventSource.onerror = (error) => {
+				setFeedback('An error occurred while crawling.')
+				eventSource.close()
+				setLoading(false)
+			}
+
+			return () => {
+				eventSource.close()
+			}
+		}
+	}, [eventSource])
+
+	const handleClick = () => {
 		setSitemap('')
 		setFeedback('Crawling...')
 		setLoading(true)
-		try {
-			const response = await fetch(`/crawl?baseURL=${encodeURIComponent(baseUrl)}`)
-			const data = await response.json()
-			const formattedXml = format(data.sitemap)
-			setSitemap(formattedXml)
-			setFeedback('sitemap.xml generated!')
-			setLoading(false)
-		} catch (error) {
-			setFeedback('An error occurred while crawling.')
-			setLoading(false)
-		}
+		const newEventSource = new EventSource(`/crawl?baseURL=${encodeURIComponent(baseUrl)}`)
+		setEventSource(newEventSource)
 	}
 
 	const handleDownload = () => {
@@ -71,17 +93,17 @@ export default function Crawl() {
 				<Button
 					className='w-12 bg-primary disabled:bg-slate-400'
 					onClick={handleClick}
-					disabled={!isFormValid}
+					disabled={!isInputValid || loading}
 				>
-					<FaPlay /> <span className='sr-only'>Start Crawling</span>
+					{loading ? (
+						<Spinner />
+					) : (
+						<>
+							<FaPlay /> <span className='sr-only'>Start Crawling</span>
+						</>
+					)}
 				</Button>
 			</div>
-
-			{loading && (
-				<div className='flex justify-center p-8'>
-					<Spinner />
-				</div>
-			)}
 
 			<div className='p-8 text-center text-lg'>{feedback}</div>
 			{sitemap && (
@@ -100,7 +122,7 @@ export default function Crawl() {
 							<FaClipboard size={40} /> <span className='sr-only'>Copy</span>
 						</Button>
 					</div>
-					<div className='max-h-screen overflow-auto bg-light p-2 text-dark'>
+					<div className='max-h-[30rem] overflow-auto bg-light p-2 text-dark md:max-h-screen'>
 						<pre>{sitemap}</pre>
 					</div>
 				</>

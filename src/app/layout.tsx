@@ -38,13 +38,13 @@ export const metadata: Metadata = {
 		description: APP_DESCRIPTION,
 		url: new URL(APP_BASE_URL),
 		siteName: APP_TITLE,
-		/* images: [
+		images: [
 			{
 				url: '/icon.png',
-				width: 512,
-				height: 512,
+				width: 560,
+				height: 560,
 			},
-		], */
+		],
 		locale: 'en_GB',
 		type: 'website',
 	},
