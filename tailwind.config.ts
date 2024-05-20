@@ -15,7 +15,7 @@ const config: Config = {
 				info: 'var(--info-color)',
 				success: 'var(--success-color)',
 				warning: 'var(--warning-color)',
-				danger: 'var(--danger-error)',
+				danger: 'var(--danger-color)',
 				light: 'var(--light-color)',
 				dark: 'var(--dark-color)',
 			},

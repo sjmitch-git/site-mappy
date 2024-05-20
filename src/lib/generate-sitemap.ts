@@ -43,7 +43,7 @@ async function crawl(
 	}
 
 	if (setFeedback) {
-		setFeedback(`Crawling ${url}`)
+		setFeedback(url)
 	}
 
 	visitedLinks.add(url)
@@ -52,6 +52,7 @@ async function crawl(
 	if (!html) {
 		return
 	}
+
 	const links = extractLinks(html, baseURL)
 	for (const link of links) {
 		await crawl(link, baseURL, visitedLinks, setFeedback)
@@ -76,7 +77,7 @@ async function generateSitemap(
 		'\n</urlset>'
 
 	if (setFeedback) {
-		setFeedback(`Crawling completed. Total links: ${visitedLinks.size}`)
+		setFeedback(`Crawling complete. Total links: ${visitedLinks.size}`)
 	}
 
 	return sitemapContent

@@ -57,6 +57,14 @@ export default function Crawl() {
 		setEventSource(newEventSource)
 	}
 
+	const handleCancel = () => {
+		if (eventSource) {
+			setFeedback('Cancelled!')
+			setLoading(false)
+			eventSource.close()
+		}
+	}
+
 	const handleDownload = () => {
 		const blob = new Blob([sitemap], { type: 'text/xml' })
 		const url = URL.createObjectURL(blob)
@@ -106,6 +114,19 @@ export default function Crawl() {
 			</div>
 
 			<div className='p-8 text-center text-lg'>{feedback}</div>
+
+			{loading && (
+				<div className='p-4 text-center'>
+					<Button
+						className='text-large rounded bg-danger text-light'
+						onClick={handleCancel}
+						title='Cancel Stream'
+					>
+						Cancel
+					</Button>
+				</div>
+			)}
+
 			{sitemap && (
 				<>
 					<div className='mb-2 flex justify-between'>

@@ -6,6 +6,7 @@ import '@/styles/index.css'
 import {
 	APP_TITLE,
 	APP_DESCRIPTION,
+	APP_KEYWORDS,
 	APP_BASE_URL,
 	APP_AUTHOR,
 	APP_AUTHOR_URL,
@@ -25,6 +26,7 @@ export const metadata: Metadata = {
 		template: `%s | ${APP_TITLE}`,
 	},
 	description: APP_DESCRIPTION,
+	keywords: APP_KEYWORDS,
 	metadataBase: new URL(APP_BASE_URL),
 	alternates: {
 		canonical: '/',

@@ -1,5 +1,5 @@
 body {
-	@apply flex h-screen flex-col bg-gradient-to-b from-[--body-dark] to-[--body-light] bg-cover bg-fixed text-light;
+	@apply flex h-screen flex-col bg-gradient-to-b from-[--body-dark] to-[--body-light] bg-fixed text-light;
 }
 
 ::-webkit-scrollbar {
